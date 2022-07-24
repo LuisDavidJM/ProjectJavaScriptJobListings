@@ -7,7 +7,6 @@ fetch('data.json')
 .then(data => {
 
     data.forEach((info, i) => {
-
         var box_content = $('<div/>', {
             'class': 'box box-content',
             'category': `${info.company}`
@@ -132,11 +131,16 @@ fetch('data.json')
     my_input.forEach((skill) => {
         skill.addEventListener('click', () => {
 
+            //Show the category selected in search content
             $(`.category[category="${skill.innerHTML.toLowerCase()}"]`).css('display', 'flex');
+            //Hide all the companies content
             $('.box-content').hide();
+            //Show only companies that contain the category selected
             $(`.${skill.innerHTML.toLowerCase()}`).css('display', 'flex');
         });
     });
+
+    //Clear all categories and show all companies
     var clear = $('#clear');
     clear.click(() => {
         $('.category').hide('slow');
